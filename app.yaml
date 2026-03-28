@@ -1,0 +1,16 @@
+runtime: nodejs20
+
+env_variables:
+  # The app pulls the API key and webhook from localStorage client-side
+  # No server-side secrets are needed for this deployment!
+
+handlers:
+  # Serve all static files with url routing
+  - url: /(.*\..+)$
+    static_files: dist/\1
+    upload: dist/(.*\..+)$
+
+  # Catch-all routes to index.html for React Router
+  - url: /.*
+    static_files: dist/index.html
+    upload: dist/index.html

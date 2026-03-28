@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BriefMind | Celestial Archive</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-error-container": "#ffb2b9",
+              "inverse-surface": "#fdf7ff",
+              "inverse-primary": "#842cd3",
+              "secondary-fixed-dim": "#29d6f1",
+              "on-primary-fixed": "#000000",
+              "tertiary-fixed": "#ff8bc5",
+              "outline-variant": "#4b4460",
+              "surface-variant": "#292044",
+              "primary-container": "#c284ff",
+              "surface-container-highest": "#292044",
+              "surface-container-lowest": "#000000",
+              "on-tertiary-container": "#4a002f",
+              "on-secondary": "#004b56",
+              "primary-dim": "#9c48ea",
+              "on-primary-container": "#360061",
+              "on-surface-variant": "#b0a6c7",
+              "tertiary-container": "#f673b7",
+              "tertiary-dim": "#f271b5",
+              "on-secondary-fixed-variant": "#005966",
+              "background": "#030014",
+              "surface-tint": "#cc97ff",
+              "surface-container-high": "#221a3b",
+              "secondary-container": "#006877",
+              "secondary-dim": "#1ad0eb",
+              "on-tertiary": "#5f003e",
+              "secondary": "#3adffa",
+              "surface-bright": "#2f264d",
+              "primary": "#cc97ff",
+              "error": "#ff6e84",
+              "primary-fixed": "#c284ff",
+              "on-background": "#ebe1ff",
+              "on-secondary-fixed": "#003a43",
+              "inverse-on-surface": "#58516d",
+              "on-primary": "#47007c",
+              "surface-container": "#1c1533",
+              "surface-container-low": "#150f2a",
+              "tertiary-fixed-dim": "#f976ba",
+              "on-tertiary-fixed-variant": "#73004b",
+              "surface": "#100a23",
+              "outline": "#79718f",
+              "error-dim": "#d73357",
+              "on-primary-fixed-variant": "#430076",
+              "on-secondary-container": "#eafbff",
+              "tertiary": "#ff86c3",
+              "on-surface": "#ebe1ff",
+              "secondary-fixed": "#48e4ff",
+              "on-tertiary-fixed": "#360021",
+              "surface-dim": "#100a23",
+              "error-container": "#a70138",
+              "primary-fixed-dim": "#b971ff",
+              "on-error": "#490013"
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk"],
+              "body": ["Inter"],
+              "label": ["Inter"],
+              "mono": ["JetBrains Mono"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>body {
+    background-color: #030014;
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuBSSkMbytgGi30I2awZ8Ey-yBRTtjKit6fyphRJk4Ekz3RHJrBvX-67lBPwJEZ3Dx2b4smPFrYG6pPpe08_Ji4RJEbRwXsGIaYT2avMyZiyTliwPvcr9z4vlhagW8x6vkgj7k71Ue8VS0KsRcgIj9xxK6jW2Hq3Z9W9mwgmbwpGX07ZTPNxfPk-28OVlJduhicdnJbaw2De3o9WpRKzE-c_74VpxUK-M4i4Fo6oN1zaQK_szOW4kEht1xTkXXcJmLf8fIl3A-sE4ft7)
+    }
+.grain-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 50;
+    opacity: 0.03;
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuAkys9MF1XQJMUfLw0E5TvhdimlQoF3fkiZodK9oAhQ-HDTQUEMqKDNZJ5IPh-f_PVy5plYd3jEnfalqTPoKz1Bx4wbFbm_MSFJd0E1HaxHOCfpVP6foUKt1Yxe2e30aysJxHYO9zwobfiPWZmyG9r5HTvzQ1ihtGRIB_Q9zfRUziMNsCRW_SyxDM9S_fqlZLmq7fG2m7N7agpgaY6oFIM-lqbGxo-FfjSyRaUVlFKygUOs4t21E99YpA7ADV-NnasoRq2tZWxCGg9O)
+    }
+.text-gradient {
+    background: linear-gradient(45deg, #fff, #3adffa, #cc97ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent
+    }
+.metallic-blob {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(204, 151, 255, 0.2) 0%, rgba(58, 223, 250, 0.1) 50%, transparent 70%);
+    filter: blur(80px);
+    z-index: -1
+    }
+.glass-card {
+    background: rgba(8, 3, 30, 0.55);
+    backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.05)
+    }
+.neon-glow-primary {
+    box-shadow: 0 0 40px rgba(204, 151, 255, 0.15)
+    }
+.input-focus-glow:focus-within {
+    box-shadow: 0 0 30px rgba(204, 151, 255, 0.25), 0 0 10px rgba(255, 134, 195, 0.15);
+    border-color: rgba(204, 151, 255, 0.4)
+    }</style>
+</head>
+<body class="font-body text-on-background min-h-screen relative overflow-x-hidden selection:bg-primary/30">
+<div class="grain-overlay"></div>
+<!-- Navigation Shell -->
+<nav class="fixed top-0 w-full z-50 bg-transparent backdrop-blur-2xl">
+<div class="flex justify-between items-center w-full px-8 py-6 max-w-7xl mx-auto">
+<div class="flex items-center gap-2">
+<span class="text-2xl font-bold bg-gradient-to-r from-white via-cyan-400 to-purple-500 bg-clip-text text-transparent font-headline tracking-tight">BriefMind</span>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-slate-400 hover:text-white transition-colors font-headline" href="#">Archive</a>
+<a class="text-white border-b-2 border-cyan-400 pb-1 font-headline" href="#">Intelligence</a>
+<a class="text-slate-400 hover:text-white transition-colors font-headline" href="#">Settings</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="hidden lg:block px-5 py-2 rounded-full border border-white/10 hover:bg-white/5 transition-all duration-300 text-sm font-medium">Connect Calendar</button>
+<span class="material-symbols-outlined text-slate-400 cursor-pointer hover:text-white transition-colors" data-icon="account_circle">account_circle</span>
+</div>
+</div>
+</nav>
+<!-- Background Elements -->
+<div class="fixed top-1/4 -left-20 metallic-blob animate-pulse"></div>
+<div class="fixed bottom-1/4 -right-20 metallic-blob" style="background: radial-gradient(circle, rgba(58,223,250,0.15) 0%, transparent 70%);"></div>
+<!-- Orbiting Rings Mockup (Visual decoration) -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-20">
+<div class="w-[800px] h-[400px] border border-secondary/30 rounded-[100%] rotate-[30deg]"></div>
+<div class="w-[700px] h-[350px] border border-tertiary/20 rounded-[100%] -rotate-[15deg]"></div>
+</div>
+<!-- Main Content -->
+<main class="relative z-10 pt-32 pb-20 px-6 flex flex-col items-center">
+<!-- Header Section -->
+<header class="max-w-[800px] w-full text-center mb-12">
+<div class="inline-flex items-center justify-center w-14 h-14 bg-gradient-to-br from-primary to-tertiary rounded-xl shadow-[0_0_30px_rgba(204,151,255,0.4)] mb-8 transform hover:scale-110 transition-transform duration-500">
+<span class="material-symbols-outlined text-white text-3xl font-bold" data-icon="bolt" data-weight="fill">bolt</span>
+</div>
+<h1 class="text-5xl md:text-7xl font-bold font-headline text-gradient tracking-tight mb-4">BriefMind</h1>
+<p class="text-on-surface-variant text-lg md:text-xl font-light tracking-wide">Paste your chaos. Extract the clarity.</p>
+</header>
+<!-- Main Input Card -->
+<section class="max-w-[800px] w-full mb-16">
+<div class="glass-card rounded-lg p-1 input-focus-glow transition-all duration-500 overflow-hidden">
+<div class="p-6">
+<div class="flex items-center gap-3 mb-4 text-on-surface-variant/80">
+<span class="material-symbols-outlined text-xl" data-icon="content_paste">content_paste</span>
+<span class="font-headline font-medium tracking-tight">Paste Your Meeting Transcript</span>
+</div>
+<textarea class="w-full min-h-[300px] bg-transparent border-none focus:ring-0 font-mono text-on-surface placeholder:text-on-surface-variant/30 resize-none text-sm leading-relaxed" placeholder="// Paste transcript here...
+// Let BriefMind identify speakers, action items, and key decisions."></textarea>
+</div>
+<div class="flex flex-col sm:flex-row justify-between items-center gap-4 p-6 pt-2 bg-white/5 border-t border-white/5">
+<div class="font-mono text-[10px] text-secondary/60 tracking-[0.2em] uppercase">
+                        // awaiting input
+                    </div>
+<button class="w-full sm:w-auto px-8 py-3 bg-gradient-to-r from-primary-dim to-tertiary-dim rounded-full font-headline font-bold text-white shadow-[0_10px_30px_rgba(204,151,255,0.3)] hover:shadow-[0_10px_40px_rgba(204,151,255,0.5)] transform hover:-translate-y-0.5 active:scale-95 transition-all duration-300 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-xl" data-icon="bolt" data-weight="fill">bolt</span>
+                        Analyze Meeting
+                    </button>
+</div>
+</div>
+</section>
+<!-- Process Row (Asymmetric Bento Lite) -->
+<section class="max-w-[900px] w-full grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Step 01 -->
+<div class="glass-card rounded-lg p-8 relative group hover:bg-white/10 transition-all duration-500 overflow-hidden">
+<div class="absolute top-4 left-4 font-mono text-[10px] text-primary/40">01</div>
+<div class="mb-6 inline-flex p-3 rounded-xl bg-white/5 group-hover:scale-110 transition-transform duration-500">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="note_add">note_add</span>
+</div>
+<h3 class="font-headline text-xl font-bold mb-2">Paste</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">Drop your transcript or meeting notes from any platform.</p>
+<div class="absolute -bottom-4 -right-4 w-24 h-24 bg-primary/5 rounded-full blur-2xl group-hover:bg-primary/10 transition-all"></div>
+</div>
+<!-- Step 02 -->
+<div class="glass-card rounded-lg p-8 relative group hover:bg-white/10 transition-all duration-500 overflow-hidden">
+<div class="absolute top-4 left-4 font-mono text-[10px] text-secondary/40">02</div>
+<div class="mb-6 inline-flex p-3 rounded-xl bg-white/5 group-hover:scale-110 transition-transform duration-500">
+<span class="material-symbols-outlined text-secondary text-3xl" data-icon="psychology">psychology</span>
+</div>
+<h3 class="font-headline text-xl font-bold mb-2">AI Processes</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">Gemini 2.5 Flash extracts structure, semantic meaning, and tone.</p>
+<div class="absolute -bottom-4 -right-4 w-24 h-24 bg-secondary/5 rounded-full blur-2xl group-hover:bg-secondary/10 transition-all"></div>
+</div>
+<!-- Step 03 -->
+<div class="glass-card rounded-lg p-8 relative group hover:bg-white/10 transition-all duration-500 overflow-hidden">
+<div class="absolute top-4 left-4 font-mono text-[10px] text-tertiary/40">03</div>
+<div class="mb-6 inline-flex p-3 rounded-xl bg-white/5 group-hover:scale-110 transition-transform duration-500">
+<span class="material-symbols-outlined text-tertiary text-3xl" data-icon="speed">speed</span>
+</div>
+<h3 class="font-headline text-xl font-bold mb-2">Get Brief</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">Decisions, actions, and owners delivered in seconds.</p>
+<div class="absolute -bottom-4 -right-4 w-24 h-24 bg-tertiary/5 rounded-full blur-2xl group-hover:bg-tertiary/10 transition-all"></div>
+</div>
+</section>
+</main>
+<!-- Side Navigation (Mobile Hidden, Shell Logic) -->
+<aside class="hidden lg:flex flex-col h-screen w-64 fixed left-0 top-0 z-40 bg-[#100a23]/80 backdrop-blur-3xl border-r border-white/5 shadow-[20px_0_50px_rgba(0,0,0,0.5)] transform -translate-x-full hover:translate-x-0 transition-transform duration-500 group">
+<div class="p-8 flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container" data-icon="auto_awesome">auto_awesome</span>
+</div>
+<div>
+<h2 class="text-xl font-black text-white font-headline">BriefMind</h2>
+<p class="text-[10px] text-slate-500 uppercase tracking-widest">Celestial Archive</p>
+</div>
+</div>
+<nav class="flex-1 px-4 py-8 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 bg-gradient-to-r from-purple-500/20 to-transparent text-purple-300 border-l-4 border-purple-500 font-headline text-sm transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span>
+                Workspace
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-slate-200 hover:bg-white/5 font-headline text-sm transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+                Transcripts
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-slate-200 hover:bg-white/5 font-headline text-sm transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="playlist_add_check">playlist_add_check</span>
+                Action Items
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-slate-200 hover:bg-white/5 font-headline text-sm transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="insights">insights</span>
+                Analytics
+            </a>
+</nav>
+<div class="p-4 mt-auto">
+<button class="w-full py-3 bg-surface-bright rounded-lg text-primary font-headline font-bold flex items-center justify-center gap-2 hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+                New Analysis
+            </button>
+</div>
+<div class="px-4 py-6 border-t border-white/5 space-y-1">
+<a class="flex items-center gap-3 px-4 py-2 text-slate-500 hover:text-slate-300 text-xs transition-colors" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="help">help</span>
+                Support
+            </a>
+<a class="flex items-center gap-3 px-4 py-2 text-slate-500 hover:text-slate-300 text-xs transition-colors" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="settings">settings</span>
+                Account
+            </a>
+</div>
+</aside>
+<!-- Subtle footer link -->
+<footer class="text-center pb-10">
+<p class="text-slate-600 text-[10px] font-mono tracking-widest uppercase">BriefMind v4.0.2 // encrypted celestial intelligence</p>
+</footer>
+</body></html>
