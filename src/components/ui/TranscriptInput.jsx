@@ -32,7 +32,13 @@ export default function TranscriptInput({ transcript, setTranscript, onAnalyze, 
       };
 
       recognition.onend = () => setIsListening(false);
-      recognition.onerror = () => setIsListening(false);
+      recognition.onerror = (e) => {
+        console.error('Speech recognition error:', e.error);
+        setIsListening(false);
+        if (e.error === 'not-allowed') {
+          alert('Microphone access denied. Please allow microphone permission in your browser settings.');
+        }
+      };
 
       recognitionRef.current = recognition;
     }
@@ -51,6 +57,7 @@ export default function TranscriptInput({ transcript, setTranscript, onAnalyze, 
         setIsListening(true);
       } catch (err) {
         console.error("Speech recognition error:", err);
+        alert("Could not start voice input. Error: " + err.message);
       }
     }
   };
