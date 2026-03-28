@@ -204,6 +204,7 @@ export async function analyzeTranscript(transcript) {
         temperature: 0.2,
         topP: 0.8,
         maxOutputTokens: 8192,
+        responseMimeType: "application/json",
       }
     });
   } catch (err) {
@@ -221,8 +222,12 @@ export async function analyzeTranscript(transcript) {
     classifyAndThrow(err);
   }
 
-  // Strip markdown code fences if Gemini wraps the response
-  text = text.replace(/```json\s*/gi, "").replace(/```\s*/g, "").trim();
+  // Locate the actual JSON block in case there's leading/trailing space or text
+  const startIdx = text.indexOf('{');
+  const endIdx = text.lastIndexOf('}');
+  if (startIdx !== -1 && endIdx !== -1) {
+    text = text.substring(startIdx, endIdx + 1);
+  }
 
   let parsed;
   try {
@@ -298,6 +303,7 @@ export async function compareMeetings(meetingA, meetingB) {
         temperature: 0.2,
         topP: 0.8,
         maxOutputTokens: 8192,
+        responseMimeType: "application/json",
       }
     });
   } catch (err) {
@@ -317,7 +323,11 @@ export async function compareMeetings(meetingA, meetingB) {
     classifyAndThrow(err);
   }
 
-  text = text.replace(/```json\s*/gi, "").replace(/```\s*/g, "").trim();
+  const startIdx = text.indexOf('{');
+  const endIdx = text.lastIndexOf('}');
+  if (startIdx !== -1 && endIdx !== -1) {
+    text = text.substring(startIdx, endIdx + 1);
+  }
 
   let parsed;
   try {
