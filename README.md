@@ -2,6 +2,8 @@
 
 # ⚡ S.N.A.P.
 
+[![CI](https://github.com/nika619/snap-app/actions/workflows/ci.yml/badge.svg)](https://github.com/nika619/snap-app/actions/workflows/ci.yml)
+
 ### **S**emantic **N**otes & **A**ction **P**rocessor
 
 *Turn messy meeting chaos into crystal-clear action plans — in seconds.*
