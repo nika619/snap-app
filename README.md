@@ -220,3 +220,8 @@ This project was built for the **LOV Hackathon 2026** under the **Productivity &
 *S.N.A.P. — Because your meetings deserve better than sticky notes.*
 
 </div>
+
+
+---
+
+Built by [Mayank Tiwari](https://github.com/nika619) · [Hire me on Contra](https://contra.com/mayank_tiwari_a4vkcjsh)
